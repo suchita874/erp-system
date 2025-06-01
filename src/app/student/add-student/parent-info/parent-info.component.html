@@ -1,0 +1,139 @@
+<div class="info-form">
+  <form [formGroup]="parentDetailsForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Father Name <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedFatherName" placeholder="Enter Father Name" matInput required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedFatherName')?.invalid && parentDetailsForm.get('selectedFatherName')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Father Number <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedFatherNumber" placeholder="Enter Father Number" matInput type="tel" maxlength="10" required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedFatherNumber')?.invalid && parentDetailsForm.get('selectedFatherNumber')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Father Occupation <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedFatheOcp" placeholder="Enter Father Occupation" matInput required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedFatheOcp')?.invalid && parentDetailsForm.get('selectedFatheOcp')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Father Aadhar <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedFatherAdhar" placeholder="Enter Father Adhar" matInput maxlength="12" required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedFatherAdhar')?.invalid && parentDetailsForm.get('selectedFatherAdhar')?.touched">
+            Aadhaar number is required
+          </mat-error>
+          <mat-error *ngIf="parentDetailsForm.get('selectedFatherAdhar')?.hasError('pattern')">
+            Aadhaar number must be 12 digits
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Mother Name <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedMotherName" placeholder="Enter Mother Name" matInput required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedMotherName')?.invalid && parentDetailsForm.get('selectedMotherName')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Mother Number <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedMotherNumber" placeholder="Enter Mother Number" matInput type="tel" maxlength="10" required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedMotherNumber')?.invalid && parentDetailsForm.get('selectedMotherNumber')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Mother Occupation <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedMotherOcp" placeholder="Enter Mother Occupation" matInput required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedMotherOcp')?.invalid && parentDetailsForm.get('selectedMotherOcp')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Mother Aadhar <span class="mandatory">*</span></mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedMotherAdhar" placeholder="Enter Mother Adhar" matInput maxlength="12" required />
+          <mat-error *ngIf="parentDetailsForm.get('selectedMotherAdhar')?.invalid && parentDetailsForm.get('selectedMotherAdhar')?.touched">
+            Aadhaar number is required
+          </mat-error>
+          <mat-error *ngIf="parentDetailsForm.get('selectedMotherAdhar')?.hasError('pattern')">
+            Aadhaar number must be 12 digits
+          </mat-error>    
+        </mat-form-field>
+      </div>
+<!-- 
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Guardian Name</mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedGdName" placeholder="Enter Guardian Name" matInput required />
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Guardian Relation</mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedGdRelation" placeholder="Enter Guardian Relation" matInput required />
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Guardian Email</mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedGdEmail" placeholder="Enter Guardian Email" matInput required />
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Guardian Photo</mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedGdPhoto" placeholder="Upload Photo" matInput required />
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Guardian Occupation</mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedGdOcp" placeholder="Enter Guardian Occupation" matInput required />
+        </mat-form-field>
+      </div> -->
+
+      <!-- <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <mat-label>Guardian Address</mat-label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input formControlName="selectedGdAddress" placeholder="Enter Guardian Occupation" matInput required />
+        </mat-form-field>
+        </div> -->
+
+    </div>  
+
+    <div class="button-container">
+      <button mat-button class="previous-btn" (click)="previousPage()">Previous</button>
+      <button mat-button type="button" class="save-next-btn" [disabled]="parentDetailsForm.invalid" (click) = "nextStep()">Save and Next</button>
+    </div>
+    </form>
+</div>

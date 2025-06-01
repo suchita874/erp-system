@@ -1,0 +1,107 @@
+<div class="header">
+<div class="filter-row">
+  <mat-form-field appearance="fill" class="form-field filter-field small-field">
+    <input matInput placeholder="Search by Keyword" [(ngModel)]="searchText" />
+    <button mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field filter-field small-field">
+    <mat-select placeholder="Select Class" [(ngModel)]="selectedClass">
+      <mat-option *ngFor="let class of classList" [value]="class">{{ class }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-field filter-field small-field">
+    <mat-select placeholder="Select Category" [(ngModel)]="selectedCategory">
+      <mat-option *ngFor="let cat of categoryList" [value]="cat">{{ cat }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+</div>
+  
+<div class="tableview">
+    <div class="table-container-scroll">
+      <table mat-table [dataSource]="paginatedStudentData" class="mat-elevation-z8 student-table">
+        <ng-container matColumnDef="admissionNumber">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> Admission No </th>
+          <td mat-cell *matCellDef="let student">
+            {{ student.admissionNumber }} 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="studentName">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> Student Name </th>
+          <td mat-cell *matCellDef="let student"> 
+            {{ student.firstName + ' ' + student.lastName }}
+        </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="class">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> Class </th>
+          <td mat-cell *matCellDef="let student"> 
+            {{ student.classStandard}}
+           </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="fatherName">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> Father Name </th>
+          <td mat-cell *matCellDef="let student"> 
+            {{ student.fatherName }}
+            </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> DOB </th>
+          <td mat-cell *matCellDef="let student"> 
+            {{ student.dateOfBirth}}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> Gender </th>
+          <td mat-cell *matCellDef="let student">
+            {{ student.gender }} 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> Category </th>
+          <td mat-cell *matCellDef="let student"> 
+            {{ student.category }}
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="mobile">
+          <th mat-header-cell *matHeaderCellDef sticky class="custom-header"> Mobile No </th>
+          <td mat-cell *matCellDef="let student"> 
+            {{ student.mobileNumber }} 
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="custom-header"> Action </th>
+          <td mat-cell *matCellDef="let student">
+              <button mat-icon-button [routerLink]="['/menu/student/add', student.id, 'info']" color="primary" (click)="editStudent(student)">
+                <mat-icon class="edit">edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+                <mat-icon class="delete">delete</mat-icon>
+              </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator class="table-footer" [length]="totalItems"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[5, 10, 25, 50]"
+               (page)="onPageChange($event)">
+      </mat-paginator>
+
+    </div>
+</div>
+ 

@@ -1,0 +1,46 @@
+<div class="login-wrapper">
+  <form class="login-form">
+    <p>Please Enter Your Login Information</p>
+
+    <!-- Username -->
+    <label for="username">Username</label>
+    <mat-form-field appearance="fill" class="custom-input">
+      <input matInput id="username" placeholder="Enter username">
+    </mat-form-field>
+
+    <!-- Password -->
+    <label for="password">Password</label>
+    <mat-form-field appearance="fill" class="custom-input">
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        id="password"
+        placeholder="Enter password"
+      />
+      <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+        <mat-icon class="small-icon">
+          {{ hidePassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+      </button>
+    </mat-form-field>
+    
+
+    <!-- Forgotten Password -->
+    <div class="forgot-password">
+      <a href="#">Forgotten password?</a>
+    </div>
+
+
+    <button mat-raised-button color="primary" class="login-button" (click)="onLogin()">
+      Log In
+    </button>
+    <button mat-button [ngClass]="'login-button'">Test Button</button>
+    
+    
+    
+    <!-- Sign up link -->
+    <div class="signup-link">
+      <span>Don’t have an account? <a href="/signup">Create new account</a></span>
+    </div>
+  </form>
+</div>

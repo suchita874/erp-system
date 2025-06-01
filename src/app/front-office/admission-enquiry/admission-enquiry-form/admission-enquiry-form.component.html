@@ -1,0 +1,145 @@
+<div class="info-form">
+    <div class="title">
+      <div class="title-header">
+        <h3>Admission Enquiry</h3>
+        <button class="close" (click)="onClose()">
+          <img src="assets/images/close.png" alt="close button" />
+        </button>
+      </div>
+      <hr />
+    </div>
+  
+    <form [formGroup]="admissionEnquiryForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <!-- Name -->
+        <div class="form-group">
+          <label>Name <span class="mandatory">*</span></label>
+          <mat-form-field class="admission-form" appearance="fill">
+            <input matInput formControlName="name" placeholder="Enter Name" />
+            <mat-error *ngIf="admissionEnquiryForm.get('name')?.invalid && admissionEnquiryForm.get('name')?.touched">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <!-- Phone -->
+        <div class="form-group">
+          <label>Phone <span class="mandatory">*</span></label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <input matInput formControlName="phone" placeholder="Enter Number" type="tel" maxlength="10"  />
+            <mat-error *ngIf="admissionEnquiryForm.get('phone')?.invalid && admissionEnquiryForm.get('phone')?.touched">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <!-- Email -->
+        <div class="form-group">
+          <label>Email <span class="mandatory">*</span></label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <input matInput formControlName="email" type="email" placeholder="Enter Email" />
+            <mat-error *ngIf="admissionEnquiryForm.get('email')?.hasError('required')">
+              This field is required
+            </mat-error>
+            <mat-error *ngIf="admissionEnquiryForm.get('email')?.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <!-- Address -->
+        <div class="form-group">
+          <label>Address <span class="mandatory">*</span></label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <input matInput formControlName="address" placeholder="Enter Address" />
+            <mat-error *ngIf="admissionEnquiryForm.get('address')?.invalid && admissionEnquiryForm.get('address')?.touched">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <!-- Description -->
+        <div class="form-group">
+          <label>Description </label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <input matInput formControlName="description" placeholder="Enter Description" />
+            <!-- <mat-error *ngIf="admissionEnquiryForm.get('description')?.invalid && admissionEnquiryForm.get('description')?.touched">
+              This field is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+  
+        <!-- Note -->
+        <div class="form-group">
+          <label>Note</label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <input matInput formControlName="note" placeholder="Enter Note" />
+            <!-- <mat-error *ngIf="admissionEnquiryForm.get('note')?.invalid && admissionEnquiryForm.get('note')?.touched">
+              This field is required
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+  
+        <!-- References -->
+        <div class="form-group">
+          <label>References <span class="mandatory">*</span></label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <mat-select formControlName="refernces" placeholder="Enter References">
+              <mat-option value="social media">Social Media</mat-option>
+              <mat-option value="relatives">Relatives</mat-option>
+            </mat-select>
+            <mat-error *ngIf="admissionEnquiryForm.get('refernces')?.invalid && admissionEnquiryForm.get('refernces')?.touched">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <!-- Sources -->
+        <div class="form-group">
+          <label>Sources <span class="mandatory">*</span></label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <mat-select formControlName="sources" placeholder="Enter Sources">
+              <mat-option value="website">Website</mat-option>
+              <mat-option value="flyer">Flyer</mat-option>
+            </mat-select>
+            <mat-error *ngIf="admissionEnquiryForm.get('sources')?.invalid && admissionEnquiryForm.get('sources')?.touched">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+  
+        <!-- Class -->
+        <div class="form-group">
+          <label>Class <span class="mandatory">*</span></label>
+          <mat-form-field class="admission-form"  appearance="fill">
+            <mat-select formControlName="class" placeholder="Enter Class">
+              <mat-option [value]="10">10</mat-option>
+              <mat-option [value]="11">11</mat-option>
+            </mat-select>
+            <mat-error *ngIf="admissionEnquiryForm.get('class')?.invalid && admissionEnquiryForm.get('class')?.touched">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="button-container">
+        <button mat-button type="submit" class="save-btn" [disabled]="admissionEnquiryForm.invalid || isSubmitting">
+          Save
+        </button>
+      </div>
+  
+      <div class="show-msg" *ngIf="success_msg">
+        {{success_msg}}
+      </div>
+      <div class="commonMsg" *ngIf="common_msg">
+        {{common_msg}}
+      </div>
+      <div class="show-err-msg" *ngIf="error_msg">
+        {{error_msg}}
+      </div>
+  
+    </form>
+  </div>
+  

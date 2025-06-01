@@ -1,0 +1,72 @@
+.student-tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .tab-wrapper {
+    position: relative; /* 👈 Ensures children use this as context */
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 50px); 
+  }  
+
+  .tab-nav {
+    display: flex;
+    justify-content: space-around;
+    // position: fixed;
+    // top: 50px;
+    // z-index: 1; /* Make sure it's above other content */
+    // height: 60px;
+    // background-color: #FAFAFA;
+    padding: 8px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+    padding: 8px 0;
+    width: 100%;
+  
+    a {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      padding: 6px 16px;
+      position: relative;
+      cursor: pointer; /* 👈 Makes it clickable */
+  
+      &.active-tab {
+        color: #18328f;
+  
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -10px; /* 👈 Show below gray line */
+          left: 0;
+          right: 0;
+          height: 2px;
+          background-color: #18328f;
+          z-index: 1; /* 👈 Make sure it's on top */
+        }
+      }
+    }
+  }
+  
+.tab-underline {
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  position: relative;
+  z-index: 0;
+  margin-top: 0;
+}
+  
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  z-index: 0;
+  position: relative;
+  // padding: 10px 0px;
+  height: calc(100vh - 50px);
+}
+  

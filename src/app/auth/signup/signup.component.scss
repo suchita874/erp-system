@@ -1,0 +1,123 @@
+.login-wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      text-align: center;
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  
+    label {
+      font-weight: 500;     // Make label bold
+      margin: 4px;    // 2px space after label
+      font-size: 14px;
+    }
+  
+    .custom-input {
+      width: 100%;
+      margin-bottom: 0 !important;
+      font-size: 14px;
+    }
+  
+    .login-button {
+      margin-top: 8px;
+      border-radius: 9px;
+      padding: 8px 0;
+    }
+  }
+  
+  .login-button {
+    margin-bottom: 10px;
+    border-radius: 999px;
+    padding: 8px 0;
+  }
+  
+  .signup-link {
+    text-align: center;
+    font-size: 14px;
+  
+    a {
+      color: #3f51b5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  }
+  
+  .small-icon {
+    font-size: 18px !important; // You can adjust this size as needed
+  }
+  
+  
+  .login-button {
+    background-color: #90caf9 !important; // light blue
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .terms-checkbox {
+    margin: 0 0; // adds spacing above and below
+  }
+  
+  .small-checkbox {
+    font-size: 10px;
+  
+    .mat-checkbox-layout {
+      font-size: 10px; // text size
+      line-height: 10px;
+    }
+  }
+  
+  ::ng-deep .custom-input .mat-mdc-text-field-wrapper {
+    background: white !important;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 45px;
+    padding: 0 4px;
+    margin-bottom: 10px;
+    box-shadow: none;
+   
+  }
+  
+  ::ng-deep .custom-input .mat-mdc-form-field-flex {
+    align-items: center;
+    height: 100%;
+  }
+  
+  ::ng-deep .custom-input input.mat-input-element {
+    height: 40px;
+    font-size: 15px;
+    padding: 0;
+  }
+  
+  ::ng-deep .custom-input.mat-mdc-form-field {
+    --mdc-filled-text-field-focus-active-indicator-color: transparent;
+    --mdc-filled-text-field-active-indicator-color: transparent;
+    --mdc-filled-text-field-disabled-active-indicator-color: transparent;
+    --mdc-filled-text-field-hover-active-indicator-color: transparent;
+    --mdc-filled-text-field-container-color: white;
+    --mdc-filled-text-field-focus-container-color: white;
+  }
+  

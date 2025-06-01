@@ -1,0 +1,97 @@
+<div class="header">
+    <div class="filter-row">
+      <mat-form-field appearance="fill" class="form-field filter-field small-field">
+        <mat-select placeholder="Select Class">
+          <mat-option [value]=""></mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field filter-field small-field">
+        <mat-select placeholder="Select">
+          <mat-option [value]=""></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button class="add-btn" (click)="openPopup('subject')">+ Add</button>
+      </div>
+
+    </div>
+</div>
+
+<div class="bg-white shadow rounded-lg p-4">
+  <div class="tableview">
+      <div class="table-container-scroll">
+      
+        <form [formGroup]="subjectForm">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-bordered table-striped">
+      
+          <!-- Subject -->
+          <ng-container matColumnDef="subject">
+              <th mat-header-cell *matHeaderCellDef class="custom-header">Subject</th>
+              <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="editingRow === element; else showSubject">
+                  <input formControlName="subject" class="form-control" />
+              </ng-container>
+              <ng-template #showSubject>{{ element.subject }}</ng-template>
+              </td>
+          </ng-container>
+      
+          <!-- Subject Code -->
+          <ng-container matColumnDef="subjectCode">
+              <th mat-header-cell *matHeaderCellDef class="custom-header">Subject Code</th>
+              <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="editingRow === element; else showCode">
+                  <input formControlName="subjectCode" class="form-control" />
+              </ng-container>
+              <ng-template #showCode>{{ element.subjectCode }}</ng-template>
+              </td>
+          </ng-container>
+
+          <!-- Assigned Teacher -->
+          <ng-container matColumnDef="teacher">
+              <th mat-header-cell *matHeaderCellDef class="custom-header">Assigned Teacher</th>
+              <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="editingRow === element; else showTeacher">
+                  <select formControlName="teacher" class="form-select">
+                  <option value="Meera">Meera</option>
+                  </select>
+              </ng-container>
+              <ng-template #showTeacher>
+                 {{ element.teacher }}  
+              </ng-template>
+              </td>
+          </ng-container>
+      
+          <!-- Action -->
+          <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef class="custom-header">Action</th>
+              <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="editingRow === element; else showActions">
+                  <button mat-icon-button color="primary" (click)="saveRow(element)">
+                  <mat-icon class="save">save</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" (click)="cancelEdit()">
+                  <mat-icon class="delete">cancel</mat-icon>
+                  </button>
+              </ng-container>
+              <ng-template #showActions>
+                  <button mat-icon-button color="primary" (click)="editRow(element)">
+                  <mat-icon class="edit">edit</mat-icon>
+                  </button>
+                  <button mat-icon-button class="warn">
+                      <mat-icon class="delete">delete</mat-icon>
+                  </button>
+              </ng-template>
+              </td>
+          </ng-container>
+      
+          <!-- Header and Row -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </form>
+
+      </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+
+<div class="bg-white shadow rounded-lg p-4">
+    <div class="button-container">
+        <button class="add-btn" (click)="visitorFormDialog()">+ Add</button>
+    </div>
+    <div class="tableview">
+        <div class="table-container-scroll">
+            <div *ngIf="savedVisitorsList.length > 0; else noData">
+                <form [formGroup]="editForm">
+                    <table mat-table [dataSource]="savedVisitorsList" class="mat-elevation-z8" style="width: 100%;">
+                      
+                      <!-- Purpose -->
+                      <ng-container [matColumnDef]="'purpose'">
+                        <th mat-header-cell *matHeaderCellDef class="custom-header">Purpose</th>
+                        <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                          <input *ngIf="editingRow === element" formControlName="purpose">
+                          <span *ngIf="editingRow !== element">{{ element.purpose }}</span>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Name -->
+                      <ng-container [matColumnDef]="'name'">
+                        <th mat-header-cell *matHeaderCellDef class="custom-header">Name</th>
+                        <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                          <input *ngIf="editingRow === element" formControlName="name">
+                          <span *ngIf="editingRow !== element">{{ element.name }}</span>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Data -->
+                      <ng-container [matColumnDef]="'data'">
+                        <th mat-header-cell *matHeaderCellDef class="custom-header">Data</th>
+                        <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                          <input *ngIf="editingRow === element" formControlName="data">
+                          <span *ngIf="editingRow !== element">{{ element.data }}</span>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Phone -->
+                      <ng-container [matColumnDef]="'phone'">
+                        <th mat-header-cell *matHeaderCellDef class="custom-header">Phone</th>
+                        <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                          <input *ngIf="editingRow === element" formControlName="phone">
+                          <span *ngIf="editingRow !== element">{{ element.phone }}</span>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- In Time -->
+                      <ng-container [matColumnDef]="'inTime'">
+                        <th mat-header-cell *matHeaderCellDef class="custom-header">In Time</th>
+                        <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                          <input *ngIf="editingRow === element" formControlName="inTime">
+                          <span *ngIf="editingRow !== element">{{ element.inTime }}</span>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Out Time -->
+                      <ng-container [matColumnDef]="'outTime'">
+                        <th mat-header-cell *matHeaderCellDef class="custom-header">Out Time</th>
+                        <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                          <input *ngIf="editingRow === element" formControlName="outTime">
+                          <span *ngIf="editingRow !== element">{{ element.outTime }}</span>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Actions -->
+                      <ng-container [matColumnDef]="'action'">
+                        <th mat-header-cell *matHeaderCellDef class="custom-header">Action</th>
+                        <td mat-cell *matCellDef="let element">
+                          <!-- Edit/Delete when not editing -->
+                          <ng-container *ngIf="editingRow !== element">
+                            <button mat-icon-button color="primary" (click)="updateVisitorDetails(element)">
+                              <mat-icon class="edit">edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="deleteVisitorDetail(element)">
+                              <mat-icon class="delete">delete</mat-icon>
+                            </button>
+                          </ng-container>
+                  
+                          <!-- Save/Cancel when editing -->
+                          <ng-container *ngIf="editingRow === element">
+                            <button mat-icon-button color="primary" (click)="saveRow(element)">
+                              <mat-icon class="save">save</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="cancelEdit()">
+                              <mat-icon class="cancel">cancel</mat-icon>
+                            </button>
+                          </ng-container>
+                        </td>
+                      </ng-container>
+                  
+                      <!-- Header and Row -->
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  </form>
+                  
+            </div>
+        </div>
+            <mat-paginator *ngIf="savedVisitorsList.length > 0" class="table-footer"
+                [length]="totalItems"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 20]"
+                (page)="onPageChange($event)">
+            </mat-paginator>
+        
+          
+              <!-- No Data Template -->
+              <ng-template #noData>
+                <div class="text-center py-16">
+                  <img src="https://www.svgrepo.com/show/503996/folder-sad.svg" alt="Empty" class="mx-auto w-24 mb-4">
+                  <p class="no-data">No Data Available in Table</p>
+                </div>
+              </ng-template>
+        
+     </div>          
+</div>

@@ -1,0 +1,18 @@
+<!-- Tab Navigation -->
+<div class="tab-wrapper">
+  <div class="tab-nav">
+    <a [routerLink]="['info']" routerLinkActive="active-tab">Student Information</a>
+    <a [routerLink]="['parent']" routerLinkActive="active-tab">Parent Guardian Detail</a>
+    <a [routerLink]="['address']" routerLinkActive="active-tab">Student Address</a>
+    <a [routerLink]="['miscellaneous']" routerLinkActive="active-tab">Miscellaneous Details</a>
+    <a [routerLink]="['upload-doc']" routerLinkActive="active-tab">Upload Document</a>
+  </div>
+
+  <!-- Underline -->
+  <div class="tab-underline"></div>
+
+  <!-- Display tab content -->
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+.info-form {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px 4px #ccc;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Just in case screen size is small */
+  }
+  
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 20%;
+  }
+  
+mat-label{
+  font-weight: 300;
+  font-size: 14px;
+}
+  
+  input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .mandatory {
+    color: red;
+  }
+    
+  ::ng-deep .custom-input .mat-mdc-text-field-wrapper {
+      background: white !important;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      height: 45px; // your custom height
+      padding: 0 12px; // slightly more padding for better alignment
+      box-shadow: none;
+      display: flex;
+      align-items: center; // ✅ vertically center input and placeholder
+      margin-bottom: 10px;
+    }
+    
+    
+    ::ng-deep .custom-input .mat-mdc-form-field-flex {
+      align-items: center;
+      height: 100%;
+    }
+    
+    ::ng-deep .custom-input input.mat-input-element {
+      height: 40px;
+      font-size: 15px;
+      padding: 0;
+    }
+    
+    ::ng-deep .custom-input.mat-mdc-form-field {
+      --mdc-filled-text-field-focus-active-indicator-color: transparent;
+      --mdc-filled-text-field-active-indicator-color: transparent;
+      --mdc-filled-text-field-disabled-active-indicator-color: transparent;
+      --mdc-filled-text-field-hover-active-indicator-color: transparent;
+      --mdc-filled-text-field-container-color: white;
+      --mdc-filled-text-field-focus-container-color: white;
+    }
+    
+    
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin: 35px 40px 20px 40px;
+    }
+    
+    .previous-btn {
+      background-color: #4763a4;
+      border: 1px solid #4763a4;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: white;
+      border-radius: 4px;
+    }
+    
+    button.save-next-btn:disabled {
+      background-color: #ccc;    
+      color: #666;               
+      cursor: not-allowed;        
+      box-shadow: none;           
+      border: none;
+      opacity: 0.7;               /* Slightly transparent */
+    }
+
+    .save-next-btn {
+      background-color: #4763a4;
+      border: 1px solid #4763a4;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: white;
+      border-radius: 4px;
+    }
+
+    ::ng-deep button.mat-mdc-button:not(:disabled), button.mat-mdc-button:not(:disabled) .mat-mdc-button-pseudo {
+      color: white !important;
+    }

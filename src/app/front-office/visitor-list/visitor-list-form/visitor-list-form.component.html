@@ -1,0 +1,149 @@
+<div class="info-form">
+    <div class="title">
+      <div class="title-header">
+        <h3>Visitor List</h3>
+        <button class="close" (click)="onClose()">
+          <img src="assets/images/close.png" alt="close button" />
+        </button>
+      </div>
+      <hr />
+    </div>
+    
+  
+    <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
+        <div class="form-grid">
+      
+          <!-- Purpose -->
+          <div class="form-group">
+            <label>Purpose <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input matInput formControlName="purpose" placeholder="Enter Purpose" />
+              <mat-error *ngIf="visitorForm.get('purpose')?.invalid && visitorForm.get('purpose')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- Name -->
+          <div class="form-group">
+            <label>Name <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input matInput formControlName="name" placeholder="Enter Name" />
+              <mat-error *ngIf="visitorForm.get('name')?.invalid && visitorForm.get('name')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- Phone -->
+          <div class="form-group">
+            <label>Phone <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill" type="tel" maxlength="10">
+              <input matInput formControlName="phone" placeholder="Enter Phone" />
+              <mat-error *ngIf="visitorForm.get('phone')?.errors?.['required']">
+                Mobile number is required
+              </mat-error>
+              <mat-error *ngIf="visitorForm.get('phone')?.errors?.['minlength']">
+                Mobile number must be 10 digits
+              </mat-error>
+              <mat-error *ngIf="visitorForm.get('phone')?.errors?.['pattern']">
+                Mobile number must contain only digits
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- ID Card -->
+          <div class="form-group">
+            <label>ID Card <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input matInput formControlName="idCard" placeholder="Enter ID Card Type or Number" />
+              <mat-error *ngIf="visitorForm.get('idCard')?.invalid && visitorForm.get('idCard')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- Number of Persons -->
+          <div class="form-group">
+            <label>No. of Persons <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input matInput type="number" formControlName="numberOfPersons" placeholder="Enter Number of Persons" />
+              <mat-error *ngIf="visitorForm.get('numberOfPersons')?.invalid && visitorForm.get('numberOfPersons')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- Date -->
+          <div class="form-group">
+            <label>Date <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Select Date" required />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="visitorForm.get('date')?.invalid && visitorForm.get('date')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- In Time -->
+          <div class="form-group">
+            <label>In Time <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input
+                matInput
+                type="time"
+                formControlName="inTime"
+                placeholder="Enter time"
+              />
+              <mat-error *ngIf="visitorForm.get('inTime')?.invalid && visitorForm.get('inTime')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- Out Time -->
+          <div class="form-group">
+            <label>Out Time <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input matInput type="time" formControlName="outTime"/>
+              <mat-error *ngIf="visitorForm.get('outTime')?.invalid && visitorForm.get('outTime')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+          <!-- Address -->
+          <div class="form-group">
+            <label>Address <span class="mandatory">*</span></label>
+            <mat-form-field class="visitor-form" appearance="fill">
+              <input matInput formControlName="address" placeholder="Enter Address" />
+              <mat-error *ngIf="visitorForm.get('address')?.invalid && visitorForm.get('address')?.touched">
+                This field is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+      
+        </div>
+      
+        <!-- Buttons -->
+        <div class="button-container">
+          <button mat-button type="submit" class="save-btn" [disabled]="visitorForm.invalid || isSubmitting">
+            Save
+          </button>
+        </div>
+
+        <div class="show-msg" *ngIf="success_msg">
+          {{success_msg}}
+        </div>
+        <div class="commonMsg" *ngIf="common_msg">
+          {{common_msg}}
+        </div>
+        <div class="show-err-msg" *ngIf="error_msg">
+          {{error_msg}}
+        </div>
+
+      </form>
+  </div>
+  

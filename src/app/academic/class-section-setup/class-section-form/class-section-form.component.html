@@ -1,0 +1,41 @@
+<div class="class-section-form" *ngIf="isPopupOpen">
+    <div class="form-container">
+      <h2>Class & Section Setup</h2>
+      <form [formGroup]="classSectionForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="className">Class Name</label>
+          <select id="className" formControlName="className">
+            <option value="" disabled>Select Class</option>
+            <option *ngFor="let class of classes" [value]="class">{{ class }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="sectionName">Section Name</label>
+          <input id="sectionName" type="text" formControlName="sectionName">
+        </div>
+  
+        <div class="form-group">
+          <label for="classCode">Class Code</label>
+          <input id="classCode" type="text" formControlName="classCode">
+        </div>
+  
+        <div class="form-group">
+          <label for="maxStudent">Max Student</label>
+          <input id="maxStudent" type="number" formControlName="maxStudent">
+        </div>
+  
+        <div class="form-group">
+          <label for="classTeacher">Class Teacher</label>
+          <select id="classTeacher" formControlName="classTeacher">
+            <option value="" disabled>Select Teacher</option>
+            <option *ngFor="let teacher of teachers" [value]="teacher">{{ teacher }}</option>
+          </select>
+        </div>
+  
+        <button type="submit" class="save-button">Save</button>
+        <button type="button" class="close-button" (click)="closePopup()">Cancel</button>
+      </form>
+    </div>
+  </div>
+  

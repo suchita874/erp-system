@@ -1,0 +1,23 @@
+.info-form {
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 1px 1px 4px #ccc;
+  }
+
+mat-card{
+    margin-bottom:  20px;
+}
+
+mat-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+.content-label{
+    display: inline-block;
+    // padding-left: 200px;
+    gap: 200;
+}

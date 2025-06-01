@@ -1,0 +1,40 @@
+<div class="info-form">
+    <div class="upload-doc-wrapper">
+      <form [formGroup]="uploadForm">
+        <div class="form-row" *ngFor="let doc of documents;">
+          <div class="doc-label">{{ doc.label }}</div>
+  
+          <input
+            type="file"
+            [id]="doc.key"
+            (change)="onFileSelected($event, doc.key)"
+            hidden
+          />
+  
+          <div
+            class="upload-circle"
+            (click)="triggerFileInput(doc.key)"
+            matTooltip="Upload {{ doc.label }}"
+          >
+            <mat-icon>upload</mat-icon>
+           
+          </div>
+         
+        </div>
+      </form>
+      <div class="button-container">
+        <button mat-button class="previous-btn" (click)="previousPage()">Previous</button>
+        <button mat-button class="save-next-btn" (click)="submitForm()"  [disabled]="isSubmitting">Submit</button>
+      </div>
+
+      <div class="show-msg" *ngIf="successMsg">
+        {{successMsg}}
+      </div>
+      <div class="show-err-msg" *ngIf="errorMsg">
+        {{errorMsg}}
+      </div>
+      
+    </div>
+    
+  </div>
+  

@@ -1,0 +1,218 @@
+<div class="info-form">
+  <form [formGroup]="studentInfoForm">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Admission Number  <span class="mandatory">*</span></label>
+    <mat-form-field id="admisionNo" class="form-field">
+      <input matInput formControlName="selectedAdmissionNo" placeholder="Admission Number" required />
+      <mat-error *ngIf="studentInfoForm.get('selectedAdmissionNo')?.invalid && studentInfoForm.get('selectedAdmissionNo')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Roll Number  <span class="mandatory">*</span></label>
+    <mat-form-field  appearance="fill" class="form-field">
+      <input matInput formControlName="selectedRollNo" placeholder="Roll Number" required />
+      <mat-error *ngIf="studentInfoForm.get('selectedRollNo')?.invalid && studentInfoForm.get('selectedRollNo')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Class  <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedClass" placeholder="Enter Class" required />
+      <mat-error *ngIf="studentInfoForm.get('selectedClass')?.invalid && studentInfoForm.get('selectedClass')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+    
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Selection <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-select formControlName="selectedSelection" placeholder="Selection" required>
+        <mat-option value="general">General</mat-option>
+        <mat-option value="quota">Quota</mat-option>
+        <mat-option value="recommendation">Recommendation</mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentInfoForm.get('selectedSelection')?.invalid && studentInfoForm.get('selectedSelection')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>First Name  <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedFirstName" placeholder="Enter First Name" required />
+      <mat-error *ngIf="studentInfoForm.get('selectedFirstName')?.invalid && studentInfoForm.get('selectedFirstName')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Last Name  <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedLastName" placeholder="Enter Last Name" required />
+      <mat-error *ngIf="studentInfoForm.get('selectedLastName')?.invalid && studentInfoForm.get('selectedLastName')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Gender  <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-select formControlName="selectedGender" placeholder="Select Gender" required>
+        <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option>
+        <mat-option value="other">Other</mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentInfoForm.get('selectedGender')?.invalid && studentInfoForm.get('selectedGender')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Date of Birth <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedDOB" [matDatepicker]="dob"  placeholder="MM/DD/YYYY" required />
+      <mat-datepicker-toggle [for]="dob"></mat-datepicker-toggle>
+      <mat-datepicker #dob></mat-datepicker>
+      <mat-error *ngIf="studentInfoForm.get('selectedDOB')?.invalid && studentInfoForm.get('selectedDOB')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Category <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-select formControlName="selectedCategory" placeholder="Select Category">
+        <mat-option value="general">General</mat-option>
+        <mat-option value="obc">OBC</mat-option>
+        <mat-option value="sc">SC</mat-option>
+        <mat-option value="st">ST</mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentInfoForm.get('selectedCategory')?.invalid && studentInfoForm.get('selectedCategory')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Religion</label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedReligion" placeholder="Enter Religion" />
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Mobile Number <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedMobileNum" placeholder="Enter Mobile Number" type="tel" maxlength="10" />
+      <mat-error *ngIf="studentInfoForm.get('mobileNumber')?.errors?.['required']">
+        Mobile number is required
+      </mat-error>
+      <mat-error *ngIf="studentInfoForm.get('mobileNumber')?.errors?.['minlength']">
+        Mobile number must be 10 digits
+      </mat-error>
+      <mat-error *ngIf="studentInfoForm.get('mobileNumber')?.errors?.['pattern']">
+        Mobile number must contain only digits
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Email <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedEmail" placeholder="Enter Email" type="email" />
+      <mat-error *ngIf="studentInfoForm.get('selectedEmail')?.errors?.['required'] && studentInfoForm.get('selectedEmail')?.touched">
+        This field is required
+      </mat-error>
+      <mat-error *ngIf="studentInfoForm.get('selectedEmail')?.errors?.['email']">
+        Please enter a valid email address
+      </mat-error>      
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Admission Date <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput [matDatepicker]="admissionDate" formControlName="selectedAdmissionDate" placeholder="MM/DD/YYYY" required />
+      <mat-datepicker-toggle [for]="admissionDate"></mat-datepicker-toggle>
+      <mat-datepicker #admissionDate></mat-datepicker>
+      <mat-error *ngIf="studentInfoForm.get('selectedAdmissionDate')?.invalid && studentInfoForm.get('selectedAdmissionDate')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Blood Group <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-select formControlName="selectedBloodGrp" placeholder="Select Blood Group">
+        <mat-option value="o+">O+</mat-option>
+      </mat-select>
+      <mat-error *ngIf="studentInfoForm.get('selectedBloodGrp')?.invalid && studentInfoForm.get('selectedBloodGrp')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+   
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Aadhar Number <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input formControlName="selectedAdharNum" matInput placeholder="Aadhar Number" maxlength="12" />
+      <mat-error *ngIf="studentInfoForm.get('selectedAdharNum')?.hasError('required')">
+        Aadhaar number is required
+      </mat-error>
+      <mat-error *ngIf="studentInfoForm.get('selectedAdharNum')?.hasError('pattern')">
+        Aadhaar number must be 12 digits
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Height (cm) <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input formControlName="selectedHeight" matInput placeholder="Height (cm)" type="number" />
+      <mat-error *ngIf="studentInfoForm.get('selectedHeight')?.invalid && studentInfoForm.get('selectedHeight')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label>Weight (kg) <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput formControlName="selectedWeight" placeholder="Weight (kg)" type="number" />
+      <mat-error *ngIf="studentInfoForm.get('selectedWeight')?.invalid && studentInfoForm.get('selectedWeight')?.touched">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    </div>
+<!-- 
+    <div class="col-12 col-sm-6 col-md-3 mb-1">
+    <label class="form-label"> As on Date <span class="mandatory">*</span></label>
+    <mat-form-field appearance="fill" class="form-field">
+      <input matInput placeholder="As on Date" required />
+    </mat-form-field>
+    </div> -->
+
+    <!-- <a href="/add-sibling"  class="add-sibling-link"> <mat-icon>add</mat-icon>Add Sibling</a> -->
+
+  </div>
+
+  <div class="button-container">
+    <button mat-button type="button" (click)="nextStep()" [disabled]="studentInfoForm.invalid" class="save-next-btn">Save and Next</button>
+  </div>
+</form>
+  
+</div>

@@ -1,0 +1,175 @@
+<p>exam works!</p>
+<div class="header">
+    <div class="filter-row">
+      <mat-form-field appearance="fill" class="form-field filter-field small-field">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search students" [(ngModel)]="searchText" />
+        <button mat-icon-button matSuffix>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field filter-field small-field">
+        <mat-label>Class</mat-label>
+        <mat-select [(ngModel)]="selectedClass">
+          <mat-option *ngFor="let class of classList" [value]="class">{{ class }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field filter-field small-field">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="selectedCategory">
+          <mat-option *ngFor="let cat of categoryList" [value]="cat">{{ cat }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    </div>
+      
+    <div class="tableview">
+        <div class="table-container">
+          <table mat-table [dataSource]="paginatedStudentData" class="mat-elevation-z8 student-table">
+            <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 student-table"> -->
+            <ng-container matColumnDef="admissionNumber">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Admission No </th>
+              <td mat-cell *matCellDef="let student">
+                <ng-container *ngIf="editRowId === student.id; else readOnlyNum">
+                  <input class="input-field" [(ngModel)]="student.admissionNumber" />
+                </ng-container>
+                <ng-template #readOnlyNum>
+                {{ student.admissionNumber }} 
+                </ng-template>
+              </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="studentName">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Student Name </th>
+              <!-- <td mat-cell *matCellDef="let student"> {{ student.firstName + ' ' + student.lastName}} </td> -->
+              <td mat-cell *matCellDef="let student"> 
+                <ng-container *ngIf="editRowId === student.id; else readOnlyName">
+                  <input class="input-field" [(ngModel)]="student.fullName"/>
+                </ng-container>
+                <ng-template #readOnlyName>
+                  <a [routerLink]="['/menu/student', student.id]">
+                    {{ student.firstName + ' ' + student.lastName }}
+                  </a>
+                </ng-template>
+            </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="class">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Class </th>
+              <td mat-cell *matCellDef="let student"> 
+                <ng-container *ngIf="editRowId === student.id; else readOnlyClass">
+                  <input class="input-field" [(ngModel)]="student.classStandard"/>
+                </ng-container>
+                <ng-template #readOnlyClass>
+                  <a [routerLink]="['/menu/student', student.id]">
+                    {{ student.classStandard}}
+                  </a>
+                </ng-template>
+               </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="fatherName">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Father Name </th>
+              <td mat-cell *matCellDef="let student"> 
+                <ng-container *ngIf="editRowId === student.id; else readOnlyFather">
+                  <input class="input-field" [(ngModel)]="student.fatherName" />
+                </ng-container>
+                <ng-template #readOnlyFather>
+                  {{ student.fatherName }}
+                </ng-template>
+                </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="dob">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> DOB </th>
+              <td mat-cell *matCellDef="let student"> 
+                <ng-container *ngIf="editRowId === student.id; else readOnlyDob">
+                  <input class="input-field" [(ngModel)]="student.dateOfBirth" />
+                </ng-container>
+                <ng-template #readOnlyDob>
+                  {{ student.dateOfBirth}}
+                </ng-template>
+              </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="gender">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Gender </th>
+              <td mat-cell *matCellDef="let student">
+                <ng-container *ngIf="editRowId === student.id; else readOnlyGender ">
+                  <input class="input-field" [(ngModel)]="student.gender " />
+                </ng-container>
+                <ng-template #readOnlyGender >
+                  {{ student.gender }} 
+                </ng-template>
+              </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Category </th>
+              <td mat-cell *matCellDef="let student"> 
+                <ng-container *ngIf="editRowId === student.id; else readOnlyCategory ">
+                  <input class="input-field" [(ngModel)]="student.category " />
+                </ng-container>
+                <ng-template #readOnlyCategory >
+                  {{ student.category }}
+                </ng-template>
+              </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="mobile">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Mobile No </th>
+              <td mat-cell *matCellDef="let student"> 
+                <ng-container *ngIf="editRowId === student.id; else readOnlyMob">
+                  <input class="input-field" [(ngModel)]="student.mobileNumber" />
+                </ng-container>
+                <ng-template #readOnlyMob>
+                  {{ student.mobileNumber }} 
+                </ng-template>
+              </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef class="custom-header"> Action </th>
+              <td mat-cell *matCellDef="let student">
+                <ng-container *ngIf="editRowId === student.id; else actionButtons">
+                  <button mat-icon-button color="primary" (click)="saveStudent(student)">
+                    <mat-icon class="save">save</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="cancelEdit()">
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </ng-container>
+                <ng-template #actionButtons>
+                  <button mat-icon-button color="primary" (click)="editStudent(student)">
+                    <mat-icon class="edit">edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+                    <mat-icon class="delete">delete</mat-icon>
+                  </button>
+                </ng-template>
+                <!-- <button mat-icon-button color="primary" (click)="editStudent(student)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteStudent(student)">
+                  <mat-icon>delete</mat-icon>
+                </button> -->
+              </td>
+            </ng-container>
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            [ngClass]="{ 'highlight': selectedRow === row.id  }"></tr>
+          </table>
+    
+          <mat-paginator [length]="totalItems"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="[5, 10, 25, 50]"
+                   (page)="onPageChange($event)">
+          </mat-paginator>
+    
+        </div>
+    </div>
+     
+    

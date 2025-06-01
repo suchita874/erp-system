@@ -1,0 +1,134 @@
+<div class="header">
+    <div class="filter-row">
+      <mat-form-field appearance="fill" class="form-field filter-field small-field">
+        <mat-select placeholder="Select Class">
+          <mat-option [value]=""></mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field appearance="fill" class="form-field filter-field small-field">
+        <mat-select placeholder="Select">
+          <mat-option [value]=""></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button class="add-btn" (click)="openPopup('classSection')">+ Add</button>
+      </div>
+
+    </div>
+</div>
+
+
+<div class="bg-white shadow rounded-lg p-4">
+    <div class="tableview">
+        <div class="table-container-scroll">
+            <form [formGroup]="editForm">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-bordered table-striped">
+            
+                <!-- Class Name -->
+                <ng-container matColumnDef="className">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header">Class Name</th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="editingRow === element; else showClassName">
+                        <input formControlName="className" class="form-control" />
+                    </ng-container>
+                    <ng-template #showClassName>{{ element.className }}</ng-template>
+                    </td>
+                </ng-container>
+            
+                <!-- Class Code -->
+                <ng-container matColumnDef="classCode">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header">Class Code</th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="editingRow === element; else showCode">
+                        <input formControlName="classCode" class="form-control" />
+                    </ng-container>
+                    <ng-template #showCode>{{ element.classCode }}</ng-template>
+                    </td>
+                </ng-container>
+            
+                <!-- Max Student -->
+                <ng-container matColumnDef="maxStudent">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header">Total Student</th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="editingRow === element; else showMax">
+                        <input formControlName="maxStudent" class="form-control" />
+                    </ng-container>
+                    <ng-template #showMax>{{ element.maxStudent }}</ng-template>
+                    </td>
+                </ng-container>
+
+                          
+                <!-- Section Name -->
+                <ng-container matColumnDef="sectionName">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header">Section</th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="editingRow === element; else showSection">
+                        <input formControlName="sectionName" class="form-control" />
+                    </ng-container>
+                    <ng-template #showSection>{{ element.sectionName }}</ng-template>
+                    </td>
+                </ng-container>
+            
+                <!-- Class Teacher -->
+                <ng-container matColumnDef="classTeacher">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header">Class Teacher</th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="editingRow === element; else showTeacher">
+                        <input formControlName="classTeacher" class="form-control" />
+                    </ng-container>
+                    <ng-template #showTeacher>{{ element.classTeacher }}</ng-template>
+                    </td>
+                </ng-container>
+            
+                <!-- Status -->
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header">Status</th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="editingRow === element; else showStatus">
+                        <select formControlName="status" class="form-select">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Pending">Pending</option>
+                        </select>
+                    </ng-container>
+                    <ng-template #showStatus>
+                        <span class="status-badge" [ngClass]="getStatusClass(element.status)">
+                            <span class="status-dot"></span> {{ element.status }}
+                        </span>
+                    </ng-template>
+                    </td>
+                </ng-container>
+            
+                <!-- Action -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef class="custom-header">Action</th>
+                    <td mat-cell *matCellDef="let element">
+                    <ng-container *ngIf="editingRow === element; else showActions">
+                        <button mat-icon-button color="primary" (click)="saveRow(element)">
+                        <mat-icon class="save">save</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="cancelEdit()">
+                        <mat-icon class="delete">cancel</mat-icon>
+                        </button>
+                    </ng-container>
+                    <ng-template #showActions>
+                        <button mat-icon-button color="primary" (click)="editRow(element)">
+                        <mat-icon class="edit">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button class="warn">
+                            <mat-icon class="delete">delete</mat-icon>
+                        </button>
+                    </ng-template>
+                    </td>
+                </ng-container>
+            
+                <!-- Header and Row -->
+                <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </form>
+      </div>
+    </div>
+</div>

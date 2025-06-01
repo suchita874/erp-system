@@ -1,0 +1,75 @@
+<div class="info-form">
+  <form [formGroup]="bankDetailForm" (ngSubmit)="onSubmit()" >
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Bank Account Number <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field w-100">
+          <input formControlName="selectedAccountNo" placeholder="Enter Account Number" matInput required />
+          <mat-error *ngIf="bankDetailForm.get('selectedAccountNo')?.invalid && bankDetailForm.get('selectedAccountNo')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Bank Name <span class="mandatory">*</span></label>
+      <mat-form-field appearance="fill" class="form-field w-100">
+        <input formControlName="selectedBankName" placeholder="Enter Bank Name" matInput required />
+        <mat-error *ngIf="bankDetailForm.get('selectedBankName')?.invalid && bankDetailForm.get('selectedBankName')?.touched">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>IFSC Code <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field w-100">
+          <input formControlName="selectedIfscCode" placeholder="Enter IFSC Code" matInput required />
+          <mat-error *ngIf="bankDetailForm.get('selectedIfscCode')?.invalid && bankDetailForm.get('selectedIfscCode')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>UID <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field w-100">
+          <input formControlName="selectedUID" placeholder="Enter UID" matInput required />
+          <mat-error *ngIf="bankDetailForm.get('selectedUID')?.invalid && bankDetailForm.get('selectedUID')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Samagra ID <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field w-100">
+          <input formControlName="selectedSamagraId" placeholder="Enter Samagra ID" matInput required />
+          <mat-error *ngIf="bankDetailForm.get('selectedSamagraId')?.invalid && bankDetailForm.get('selectedSamagraId')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="form-row"> -->
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+          <label class="field-label">Previous School Details</label>
+          <textarea class="form-field w-100" placeholder="Enter Text Here" matInput rows="3"></textarea>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+          <label class="field-label">Note</label>
+          <textarea class="form-field w-100" placeholder="Enter Note Here" matInput rows="3" maxlength=""></textarea>
+        </div>
+      <!-- </div> -->
+
+      
+      
+    </div> 
+    
+    <div class="button-container">
+      <button mat-button class="previous-btn" (click)="previousPage()">Previous</button>
+      <button mat-button type="button" class="save-next-btn" [disabled]="bankDetailForm.invalid" (click) = "nextStep()">Save and Next</button>
+    </div>
+  </form>
+</div>

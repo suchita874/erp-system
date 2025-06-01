@@ -1,0 +1,69 @@
+<div class="login-wrapper">
+    <form class="login-form">
+      <p>Please Enter Your Signup Information</p>
+  
+      <!-- Email Address -->
+      <label for="email">Email Address</label>
+      <mat-form-field appearance="fill" class="custom-input">
+        <input matInput id="email" type="email" placeholder="Enter email address" required />
+      </mat-form-field>
+  
+      <!-- Phone Number -->
+      <label for="phone">Phone Number</label>
+      <mat-form-field appearance="fill" class="custom-input">
+        <input matInput id="phone" type="tel" placeholder="Enter phone number" required />
+      </mat-form-field>
+  
+      <!-- Password -->
+      <label for="password">Password</label>
+      <mat-form-field appearance="fill" class="custom-input">
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          id="password"
+          placeholder="Enter password"
+          required
+        />
+        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" type="button">
+          <mat-icon class="small-icon">
+            {{ hidePassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </button>
+      </mat-form-field>
+  
+      <!-- Confirm Password -->
+      <label for="confirmPassword">Confirm Password</label>
+      <mat-form-field appearance="fill" class="custom-input">
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          id="confirmPassword"
+          placeholder="Confirm password"
+          required
+        />
+        <button mat-icon-button matSuffix (click)="toggleConfirmPasswordVisibility()" type="button">
+          <mat-icon class="small-icon">
+            {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+        </button>
+      </mat-form-field>
+  
+      <!-- Terms & Conditions -->
+      <div class="terms-checkbox">
+        <mat-checkbox class="small-checkbox" required>
+          I accept the Terms and Conditions of Use.
+        </mat-checkbox>
+      </div>
+  
+      <!-- Signup Button -->
+      <button mat-raised-button color="primary" class="login-button">
+        Sign Up
+      </button>
+  
+      <!-- Already have account -->
+      <div class="signup-link">
+        <span>Already have an account? <a href="/login">Log In</a></span>
+      </div>
+    </form>
+  </div>
+  

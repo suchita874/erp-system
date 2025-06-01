@@ -1,0 +1,113 @@
+// Add background color to outer wrapper
+.info-form {
+    width: 100%;
+    min-height: 100vh; // make it full height if needed
+    padding: 20px 0;
+    background-color: white;
+    box-shadow: 1px 1px 5px #ecebeb;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; // change to center if you want vertical center
+  
+    .upload-doc-wrapper {
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 1px 1px 4px #ccc;
+  
+      .form-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+  
+        .doc-label {
+          font-size: 16px;
+        }
+  
+        .upload-circle {
+          width: 40px;
+          height: 40px;
+          background-color: #f6f7f9;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+  
+          mat-icon {
+            color: #7d8592;
+          }
+  
+          &:hover {
+            background-color: #e2e4e7;
+          }
+        }
+
+          
+      }
+    }
+      
+    
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin:40px;
+    margin-bottom: 5px;
+  }
+  
+  .previous-btn {
+    background-color: #4763a4;
+    border: 1px solid #4763a4;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .save-next-btn {
+    background-color: #4763a4;
+    border: 1px solid #4763a4;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #36508a; /* darker shade for hover */
+      cursor: pointer;
+    }
+  
+    &:disabled {
+      background-color: #a9a9a9; /* gray when disabled */
+      border-color: #a9a9a9;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.show-msg{
+  color: #28a745;
+  text-align: right;
+  margin-top: 0;
+  font-size: 13px;
+  margin-right: 40px;
+}
+
+
+.show-err-msg{
+  color: #f44336;;
+  text-align: right;
+  margin-top: 0;
+  font-size: 13px;
+  margin-right: 40px; 
+}

@@ -1,0 +1,169 @@
+
+<div class="info-form">
+  <div class="title">
+    <div class="title-header">
+      <h3>{{ getPopupTitle() }}</h3>
+      <button class="close" (click)="closePopup()">
+        <img src="assets/images/close.png" alt="close button" />
+      </button>
+    </div>
+    <hr />
+  </div>
+
+    <div class="popup" *ngIf="popupType">
+        <div class="form-container">
+        <form [formGroup]="academicForm" (ngSubmit)="onSubmit()">
+            <div class="form-grid">
+                <ng-container *ngIf="popupType === 'classSection'">
+                    <!-- Class Name -->
+                    <div class="form-group">
+                      <label>Class Name <span class="mandatory">*</span></label>
+                      <mat-form-field appearance="fill" class="academic-form">
+                        <input matInput formControlName="className" placeholder="Enter Class Name" />
+                        <mat-error *ngIf="academicForm.get('className')?.invalid && academicForm.get('className')?.touched">
+                          Class Name is required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- Section Name -->
+                    <div class="form-group">
+                      <label>Section Name <span class="mandatory">*</span></label>
+                      <mat-form-field appearance="fill" class="academic-form">
+                        <input matInput formControlName="sectionName" placeholder="Enter Section Name" />
+                        <mat-error *ngIf="academicForm.get('sectionName')?.invalid && academicForm.get('sectionName')?.touched">
+                          Section Name is required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- Class Code -->
+                    <div class="form-group">
+                      <label>Class Code <span class="mandatory">*</span></label>
+                      <mat-form-field appearance="fill" class="academic-form">
+                        <input matInput formControlName="classCode" placeholder="Enter Class Code" />
+                        <mat-error *ngIf="academicForm.get('classCode')?.invalid && academicForm.get('classCode')?.touched">
+                          Class Code is required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- Total Students -->
+                    <div class="form-group">
+                      <label>Total Students <span class="mandatory">*</span></label>
+                      <mat-form-field appearance="fill" class="academic-form">
+                        <input matInput type="number" formControlName="totalStudents" placeholder="Enter Total Students" />
+                        <mat-error *ngIf="academicForm.get('totalStudents')?.invalid && academicForm.get('totalStudents')?.touched">
+                          Must be a positive number
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- Class Teacher -->
+                    <div class="form-group">
+                      <label>Class Teacher <span class="mandatory">*</span></label>
+                      <mat-form-field appearance="fill" class="academic-form">
+                        <input matInput formControlName="classTeacher" placeholder="Enter Class Teacher Name" />
+                        <mat-error *ngIf="academicForm.get('classTeacher')?.invalid && academicForm.get('classTeacher')?.touched">
+                          Class Teacher is required
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+            </ng-container>
+            
+    
+            <ng-container *ngIf="popupType === 'subject'">
+            <!-- Subject Form -->
+            <label>Subject Name</label>
+            <mat-form-field appearance="fill">
+                <input matInput formControlName="subjectName" type="text">
+            </mat-form-field>
+    
+            <label>Subject Code</label>
+            <mat-form-field appearance="fill">
+                <input matInput formControlName="subjectCode" type="text">
+            </mat-form-field>
+            </ng-container>
+    
+            <ng-container *ngIf="popupType === 'timetable'">
+             <!-- Period -->
+            <div class="form-group">
+              <label>Period <span class="mandatory">*</span></label>
+              <mat-form-field appearance="fill" class="academic-form">
+                <input matInput type="number" formControlName="period" placeholder="Enter Period" />
+                <mat-error *ngIf="academicForm.get('period')?.invalid && academicForm.get('period')?.touched">
+                  Period is required and must be a positive number
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Time -->
+            <div class="form-group">
+              <label>Time <span class="mandatory">*</span></label>
+              <mat-form-field appearance="fill" class="academic-form">
+                <input matInput type="time" formControlName="time" placeholder="Enter Time" />
+                <mat-error *ngIf="academicForm.get('time')?.invalid && academicForm.get('time')?.touched">
+                  Time is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Day -->
+            <div class="form-group">
+              <label>Day <span class="mandatory">*</span></label>
+              <mat-form-field appearance="fill" class="academic-form">
+                <mat-select formControlName="day" placeholder="Select Day">
+                  <mat-option *ngFor="let d of days" [value]="d">{{ d }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="academicForm.get('day')?.invalid && academicForm.get('day')?.touched">
+                  Day is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Class -->
+            <div class="form-group">
+              <label>Class <span class="mandatory">*</span></label>
+              <mat-form-field appearance="fill" class="academic-form">
+                <input matInput formControlName="class" placeholder="Enter Class" />
+                <mat-error *ngIf="academicForm.get('class')?.invalid && academicForm.get('class')?.touched">
+                  Class is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Class Teacher -->
+            <div class="form-group">
+              <label>Class Teacher <span class="mandatory">*</span></label>
+              <mat-form-field appearance="fill" class="academic-form">
+                <input matInput formControlName="subjectClassTeacher" placeholder="Enter Class Teacher" />
+                <mat-error *ngIf="academicForm.get('subjectClassTeacher')?.invalid && academicForm.get('subjectClassTeacher')?.touched">
+                  Class Teacher is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Subject -->
+            <div class="form-group">
+              <label>Subject <span class="mandatory">*</span></label>
+              <mat-form-field appearance="fill" class="academic-form">
+                <input matInput formControlName="subject" placeholder="Enter Subject" />
+                <mat-error *ngIf="academicForm.get('subject')?.invalid && academicForm.get('subject')?.touched">
+                  Subject is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            </ng-container>
+
+          </div>
+            <div class="button-container">
+              <button mat-button type="submit" class="save-btn" [disabled]="academicForm.invalid || isSubmitting">
+                Save
+              </button>
+            </div>
+           
+        </form>
+        </div>
+    </div>
+    
+</div>

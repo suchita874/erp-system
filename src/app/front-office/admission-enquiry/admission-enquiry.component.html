@@ -1,0 +1,130 @@
+<div class="bg-white shadow rounded-lg p-4">
+  <div class="button-container">
+      <button class="add-btn" (click)="admissionEnquiryFormDialog()">+ Add</button>
+  </div>
+  <div class="tableview">
+      <div class="table-container-scroll">
+        <div *ngIf="dataSource.length > 0; else noData">
+          <form [formGroup]="editForm">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
+              
+              <!-- Admission Columns -->
+              <ng-container [matColumnDef]="'name'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Name</th>
+                <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                  <input *ngIf="editingRow === element" formControlName="name">
+                  <span *ngIf="editingRow !== element">{{ element.name }}</span>
+                </td>
+              </ng-container>
+
+              <ng-container [matColumnDef]="'phone'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Phone</th>
+                <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                  <input *ngIf="editingRow === element" formControlName="mobile">
+                  <span *ngIf="editingRow !== element">{{ element.mobile }}</span>
+                </td>
+              </ng-container>
+
+              <ng-container [matColumnDef]="'source'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Source</th>
+                <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                  <input *ngIf="editingRow === element" formControlName="sources">
+                  <span *ngIf="editingRow !== element">{{ element.sources }}</span>
+                </td>
+              </ng-container>
+
+              <ng-container [matColumnDef]="'enquireDate'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Enquiry Date</th>
+                <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                  <input *ngIf="editingRow === element" formControlName="enquireDate">
+                  <span *ngIf="editingRow !== element">{{ element.enquireDate  }}</span>
+                </td>
+              </ng-container>
+
+              <ng-container [matColumnDef]="'lastFollowUp'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Last FollowUp</th>
+                <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                  <input *ngIf="editingRow === element" formControlName="lastFollowUp">
+                  <span *ngIf="editingRow !== element">{{ element.lastFollowUp  }}</span>
+                </td>
+              </ng-container>
+
+              <!-- <ng-container [matColumnDef]="'status'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Status</th>
+                <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                  <input *ngIf="editingRow === element" formControlName="status">
+                  <span *ngIf="editingRow !== element">{{ element.status }}</span>
+                </td>
+              </ng-container> -->
+
+              <ng-container [matColumnDef]="'status'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Status</th>
+                <td mat-cell *matCellDef="let element" (click)="editRow(element)">
+                  <!-- Dropdown when editing -->
+                  <select *ngIf="editingRow === element" formControlName="status" class="status-dropdown">
+                    <option value="Confirm">Confirm</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                  </select>
+              
+                  <!-- Oval badge when not editing -->
+                  <span *ngIf="editingRow !== element" [ngClass]="getStatusClass(element.status)" class="status-badge">
+                    {{ element.status }}
+                  </span>
+                </td>
+              </ng-container>
+              
+
+              <!-- Action Column -->
+              <ng-container [matColumnDef]="'action'">
+                <th mat-header-cell *matHeaderCellDef class="custom-header">Action</th>
+                <td mat-cell *matCellDef="let element">
+                  <!-- Show Edit/Delete in normal flow -->
+                  <ng-container *ngIf="editingRow !== element">
+                    <button mat-icon-button class="primary" (click)="updateAdmissionEnquiryDetail(element)">
+                      <mat-icon class="edit">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button class="warn" (click)="deleteAdmissionEnquiryDetail(element)">
+                      <mat-icon class="delete">delete</mat-icon>
+                    </button>
+                  </ng-container>
+              
+                  <!-- Show Save/Cancel in editing mode -->
+                  <ng-container *ngIf="editingRow === element">
+                    <button mat-icon-button class="primary" (click)="saveRow(element)">
+                      <mat-icon class="save">save</mat-icon>
+                    </button>
+                    <button mat-icon-button class="warn" (click)="cancelEdit()">
+                      <mat-icon class="cancel">cancel</mat-icon>
+                    </button>
+                  </ng-container>
+                </td>
+              </ng-container>
+              
+
+              <!-- Header and Rows -->
+              <tr mat-header-row *matHeaderRowDef="displayedColumns" class="custom-header-row"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" (mouseenter)="hoveredRow = row" (mouseleave)="hoveredRow = null"></tr>
+            </table>
+          </form>
+        </div>
+        
+      </div>
+
+      <mat-paginator *ngIf="dataSource.length > 0" class="table-footer"
+        [length]="totalItems"
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 20]"
+        (page)="onPageChange($event)">
+      </mat-paginator>
+
+        <!-- No Data Template -->
+        <ng-template #noData>
+          <div class="text-center py-16">
+            <img src="https://www.svgrepo.com/show/503996/folder-sad.svg" alt="Empty" class="mx-auto w-24 mb-4">
+            <p class="no-data">No Data Available in Table</p>
+          </div>
+        </ng-template>
+     
+  </div>
+</div>

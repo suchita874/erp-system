@@ -1,0 +1,59 @@
+<div class="dashboard-wrapper" #menuWrapper>
+  <!-- Sidebar 1 (Icon Column) -->
+  <div class="sidebar1">
+    <div class="cls-header">
+      <div class="cls-logo">CLS</div>
+    </div>
+
+    <div 
+      *ngFor="let item of sidebarItems"
+      class="icon-item"
+      [ngClass]="{ activeIcon: activeIcon === item.label }"
+      (click)="toggleSidebar(item)"
+    >
+      <img [src]="item.icon" [alt]="item.label + ' Icon'" class="custom-icon" />
+      <span class="icon-label">{{ item.label }}</span>
+    </div>
+  </div>
+
+  <!-- Sidebar 2 (Submenu Panel) -->
+  <div 
+    class="sidebar2"
+    *ngIf="activeSidebarChildren.length > 0"
+  >
+    <div class="side-menu">
+      <p>{{ activeSidebar }}</p>
+    </div>
+    <div class="side-menu-list">
+      <a 
+        *ngFor="let child of activeSidebarChildren"
+        [routerLink]="child.link"
+        routerLinkActive="active"
+      >
+        {{ child.label }}
+      </a>
+    </div>
+  </div>
+
+     <!-- Header Content -->
+    <div class="main-content">
+      <mat-toolbar>
+        <span class="spacer"></span>
+        <div class="toolbar-actions">
+          <img src="https://i.pravatar.cc/40" alt="Profile" class="profile-pic" />
+          <span class="user-name">User-name</span>
+          <mat-icon class="notification-icon">notifications</mat-icon>
+        </div>
+      </mat-toolbar>
+  
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+</div>
+
+
+<footer class="footer-class">
+  <img src="assets/images/logo.png" alt="Logo" class="footer-logo">
+  SchoolERP — Empowering Education
+</footer> 

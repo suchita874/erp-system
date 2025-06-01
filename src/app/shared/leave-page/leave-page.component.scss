@@ -1,0 +1,54 @@
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.close {
+background: none;
+border: none;
+padding: 0;
+cursor: pointer;
+}
+  
+.close img {
+width: 35px; 
+height: 35px;
+border: none;
+outline: none;
+box-shadow: none;
+}
+
+.leave-page {
+    padding: 1.2rem;
+}
+
+.buttons{
+    margin-right: 5px;
+    margin-top: 40px;
+}
+
+.cancel-button{
+    color: #007BFF;
+    border-color: #007BFF;
+    background: none;
+    border-radius: 90px;
+    margin-right: 20px;
+    padding: 10px 25px;
+}
+
+.cancel-button:hover{
+    background-color: #e2ebee;
+}
+
+.leave-button{
+    color: black;
+    background-color: #ffd900;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 20px;
+}
+
+.leave-button:hover{
+    background-color: #f5d109;
+}

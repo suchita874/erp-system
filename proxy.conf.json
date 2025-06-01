@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://schoolerp.prathviirajj.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
+

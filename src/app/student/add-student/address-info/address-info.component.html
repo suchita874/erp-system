@@ -1,0 +1,166 @@
+<div class="info-form">
+   
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+
+      <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Address Line 1 <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input matInput formControlName="address1" placeholder="Enter address">
+          <mat-error *ngIf="addressForm.get('address1')?.invalid && addressForm.get('address1')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Address Line 2</label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input matInput id="address2" placeholder="Enter address">
+        </mat-form-field>
+        </div>
+  
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>City <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input matInput formControlName="city" placeholder="Enter city">
+          <mat-error *ngIf="addressForm.get('city')?.invalid && addressForm.get('city')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+  
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>State <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input matInput formControlName="state" placeholder="Enter state">
+          <mat-error *ngIf="addressForm.get('state')?.invalid && addressForm.get('state')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Zip Code <span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input matInput formControlName="zipcode" placeholder="Enter zip code">
+          <mat-error *ngIf="addressForm.get('zipcode')?.invalid && addressForm.get('zipcode')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+  
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Country<span class="mandatory">*</span></label>
+        <mat-form-field appearance="fill" class="form-field">
+          <input matInput formControlName="country" placeholder="Enter country">
+          <mat-error *ngIf="addressForm.get('country')?.invalid && addressForm.get('country')?.touched">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-3 mb-1">
+        <label>Mobile Number <span class="mandatory">*</span></label>
+          <mat-form-field appearance="fill" class="form-field">
+            <input matInput formControlName="mobileNo" placeholder="Enter mobile no." type="tel" maxlength="10">
+            <mat-error *ngIf="addressForm.get('mobileNo')?.invalid && addressForm.get('mobileNo')?.touched">
+              Mobile number is required
+            </mat-error>
+            <mat-error *ngIf="addressForm.get('mobileNo')?.errors?.['minlength']">
+              Mobile number must be 10 digits
+            </mat-error>
+            <mat-error *ngIf="addressForm.get('mobileNo')?.errors?.['pattern']">
+              Mobile number must contain only digits
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+    </div>
+
+
+    <!-- [disabled]="addressForm.pristine || addressForm.invalid" -->
+    <div class="button-container">
+      <button mat-button class="previous-btn" (click)="previousPage()">Previous</button>
+      <button mat-button type="button" class="save-next-btn" [disabled]="addressForm.invalid" (click) = "nextStep()">Save and Next</button>
+
+    </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="form-row">
+  <mat-form-field appearance="outline" class="form-field" floatLabel="always">
+    <mat-label>Address Line 1</mat-label>
+    <input matInput required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field" floatLabel="always">
+    <mat-label>Address Line 2</mat-label>
+    <input matInput required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field" floatLabel="always">
+    <mat-label>City</mat-label>
+    <input matInput required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field" floatLabel="always">
+    <mat-label>State</mat-label>
+    <input matInput required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field" floatLabel="always">
+    <mat-label>Zip Code</mat-label>
+    <input matInput required />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field" floatLabel="always">
+    <mat-label>Country</mat-label>
+    <mat-select required>
+      <mat-option value="select">Select</mat-option>
+      <mat-option value="select">Select</mat-option>
+      <mat-option value="select">Select</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field" floatLabel="always">
+    <mat-label>Mobile Number</mat-label>
+    <input matInput required />
+  </mat-form-field>
+</div>   -->
