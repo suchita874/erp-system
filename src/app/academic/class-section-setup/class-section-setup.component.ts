@@ -4,6 +4,7 @@ import { materialImports } from '../../shared/material-imports';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AcademicFormComponent } from '../../shared/academic-form/academic-form.component';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-class-section-setup',
@@ -28,7 +29,7 @@ export class ClassSectionSetupComponent implements OnInit{
   editForm: FormGroup;
   editingRow: any = null;
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) {
+  constructor(private fb: FormBuilder, public dialog: MatDialog, public appService: AppService) {
     this.editForm = this.fb.group({
       className: [''],
       sectionName: [''],
@@ -70,6 +71,7 @@ export class ClassSectionSetupComponent implements OnInit{
         return '';
     }
   }
+
   openPopup(type: 'classSection'): void {
     console.log('Opening Academic Popup');
     
@@ -82,5 +84,19 @@ export class ClassSectionSetupComponent implements OnInit{
       disableClose: true
     });
   }
+
+  getClassDetails() {
+    this.appService.getAllClassDetails().subscribe({
+      next: (res) => {
+
+      },
+
+      error: (error) => {
+
+      }
+    })
+  }
+
+  
 
 }

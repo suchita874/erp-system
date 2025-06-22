@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { materialImports } from '../../shared/material-imports';
-import { NgClass } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     FormsModule,
     materialImports,
-    NgClass,
+    CommonModule,
     ReactiveFormsModule
   ],
   templateUrl: './login.component.html',

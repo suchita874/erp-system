@@ -34,6 +34,9 @@ export class VisitorListComponent implements OnInit{
     'outTime',
     'action'
   ]; 
+
+  filterForm: FormGroup;
+  sourceOptions: string[] = ['Email', 'Phone', 'Referral']; // Example options
   
   editedRowId: any;
   savedVisitorsList: any[] = [];
@@ -41,6 +44,8 @@ export class VisitorListComponent implements OnInit{
   totalPages: number = 0;
   editForm: FormGroup;
   editingRow: any = null;
+  pageSize = 5;
+  currentPage = 0;
 
 
   constructor(public dialog: MatDialog, private appService: AppService, private snackBar: MatSnackBar,
@@ -56,10 +61,17 @@ export class VisitorListComponent implements OnInit{
       outTime: ['']
     });
 
+    this.filterForm = this.fb.group({
+      enquiryDate: [''],
+      source: [''],
+      status: ['']
+    });
+
   }
 
   ngOnInit(): void {
     this.getAllVisitorsDetailData();
+    this.loadVisitors();
   }
 
   getAllVisitorsDetailData(page: number = 0, size: number = 5) {
@@ -79,8 +91,30 @@ export class VisitorListComponent implements OnInit{
     
   }
 
+  loadVisitors() {
+    const filters = {
+      enquiryDate: this.filterForm.value.enquiryDate,
+      source: this.filterForm.value.source,
+      status: this.filterForm.value.status,
+      page: this.currentPage,
+      size: this.pageSize
+    };
+
+    // this.appService.getVisitors(filters).subscribe((res: any) => {
+    //   this.savedVisitorsList = res.data;
+    //   this.totalItems = res.total;
+    // });
+  }
+
+  applyFilters() {
+    this.currentPage = 0;
+    this.loadVisitors();
+  }
+
+
   onPageChange(event: PageEvent) {
     this.getAllVisitorsDetailData(event.pageIndex, event.pageSize);
+    // this.loadVisitors();
   }
 
   visitorFormDialog() {

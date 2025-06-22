@@ -14,6 +14,9 @@ import { environment } from '../../environments/environment';
 export class AppService {
   private baseUrl : string = environment.API_BASE_URL;
   // env: any = 'https://schoolerp.prathviirajj.com/api/';
+
+
+  /*    Api Urls    */
   getStudentsUrl = 'students';
   saveStudentsUrl = 'students';
   getAllAdmissionEnquireisUrl = '/enquiries/getAllAdmissionEnquiries';
@@ -25,9 +28,13 @@ export class AppService {
   saveVisitorsDetailUrl = '/visitors/createVisitor';
   updateVisitorsDetailByIdUrl = '/visitors/updateVisitorById/';
   deleteVisitorsByIdUrl = '/visitors/deleteVisitorById/';
-  getVisitorsDetailByIdUrl = '/visitors/getVisitorById/'
+  getVisitorsDetailByIdUrl = '/visitors/getVisitorById/';
+  saveClassDetailsUrl = 'classDetails/createClassDetail';
+  getAllClassDetailsUrl = 'classDetails/getAllClassDetails';
+  getClassDetailsByIdUrl = 'classDetails/classDetailsById/';
+  deleteClassDetailsByIdUrl = 'classDetails/deleteClassDetailById/';
+  updateClassDetailsByIdUrl = 'classDetails/updateClassDetailsById/';
 
-  //Api Url
 
   constructor(private router: Router, private http: HttpClient) {
     console.log(this.baseUrl)
@@ -114,5 +121,28 @@ export class AppService {
     return this.http.delete(this.baseUrl + this.deleteVisitorsByIdUrl + `${id}`);
   }
   
+  /* Class Details API */
+
+  getAllClassDetails() {
+    return this.http.get(this.baseUrl + this.getAllClassDetailsUrl);
+  }
+
+  saveAllClassDetails(payload: any) {
+    return this.http.post(this.baseUrl + this.saveClassDetailsUrl, payload);
+  }
+
+  getAllClassDetailsById(id: any) {
+    return this.http.get(this.baseUrl + this.getAllClassDetailsById + `${id}`);
+  }
+
+  updateClassDetailsById(id: any, payload: any) {
+    return this.http.put(this.baseUrl + this.updateClassDetailsByIdUrl + `${id}`, payload);
+  }
+
+  deleteClassDetailsById(id: any) {
+    return this.http.delete(this.baseUrl + this.deleteClassDetailsById + `${id}`);
+  }
+
+
 
 }

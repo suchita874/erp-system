@@ -39,7 +39,6 @@ export class AdmissionEnquiryComponent implements OnInit{
   ]; 
   dataSource: any[] = []; 
   editingRow: number | null = null;
-  rowForms: FormGroup[] = [];
   hoveredRow: any = null;
   totalItems: number = 0;
   totalPages: number = 0;
@@ -48,44 +47,15 @@ export class AdmissionEnquiryComponent implements OnInit{
     private loaderService: LoaderService, private fb: FormBuilder
   ) {
 
-    // this.dataSource.forEach((row, index) => {
-    //   this.rowForms[index] = this.fb.group({
-    //     name: [row.name, Validators.required],
-    //     mobile: [row.mobile, Validators.required],
-    //     sources: [row.sources, Validators.required],
-    //     enquireDate: [row.enquireDate, Validators.required],
-    //     lastFollowUp: [row.lastFollowUp, Validators.required],
-    //     status: [row.status, Validators.required],
-    //   });
-    // });
   }
 
   ngOnInit(): void {
     this.getAllAdmissionEnquiryDetails();
   }
 
-
-
-  // startEdit(index: number) {
-  //   this.editingRow = index;
-  // }
-
   cancelEdit() {
     this.editingRow = null;
   }
-
-  // saveEdit() {
-  //   if (this.editingRow === null) return;
-
-  //   const form = this.rowForms[this.editingRow];
-  //   if (form.valid) {
-  //     const updatedData = form.value;
-  //     this.dataSource[this.editingRow] = updatedData;
-  //     this.cancelEdit();
-  //   } else {
-  //     form.markAllAsTouched(); // Show validation errors
-  //   }
-  // }
 
   editForm = new FormGroup({
     name: new FormControl(''),
@@ -112,16 +82,16 @@ export class AdmissionEnquiryComponent implements OnInit{
       "enquireDate": this.editForm.get('enquireDate')?.value,
       "lastFollowUp": this.editForm.get('lastFollowUp')?.value,
       "status": this.editForm.get('status')?.value
-  }
-
-  this.appService.saveAdmissionEnquiry(payload).subscribe({
-    next: (response) => {
-      console.log('Form submitted successfully:', response);
-    },
-    error: (error) => {
-      console.error('Form submission error:', error);
     }
-  });
+
+    this.appService.saveAdmissionEnquiry(payload).subscribe({
+      next: (response) => {
+        console.log('Form submitted successfully:', response);
+      },
+      error: (error) => {
+        console.error('Form submission error:', error);
+      }
+    });
   }
 
   getStatusClass(status: string): string {

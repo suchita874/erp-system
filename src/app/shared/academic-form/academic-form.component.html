@@ -74,15 +74,54 @@
     
             <ng-container *ngIf="popupType === 'subject'">
             <!-- Subject Form -->
-            <label>Subject Name</label>
-            <mat-form-field appearance="fill">
-                <input matInput formControlName="subjectName" type="text">
-            </mat-form-field>
-    
-            <label>Subject Code</label>
-            <mat-form-field appearance="fill">
-                <input matInput formControlName="subjectCode" type="text">
-            </mat-form-field>
+            <!-- Section -->
+              <div class="form-group">
+                <label>Section <span class="mandatory">*</span></label>
+                <mat-form-field appearance="fill" class="academic-form">
+                  <input matInput type="text" formControlName="section" placeholder="Enter Section" />
+                  <mat-error *ngIf="academicForm.get('section')?.invalid && academicForm.get('section')?.touched">
+                    Section is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+            <!-- Subject -->
+              <div class="form-group">
+                <label>Subject <span class="mandatory">*</span></label>
+                <mat-form-field appearance="fill" class="academic-form">
+                  <input matInput type="text" formControlName="subject" placeholder="Enter Subject" />
+                  <mat-error *ngIf="academicForm.get('subject')?.invalid && academicForm.get('subject')?.touched">
+                    Subject is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <!-- Subject Code -->
+              <div class="form-group">
+                <label>Subject Code <span class="mandatory">*</span></label>
+                <mat-form-field appearance="fill" class="academic-form">
+                  <input matInput type="text" formControlName="subjectCode2" placeholder="Enter Subject Code" />
+                  <mat-error *ngIf="academicForm.get('subjectCode2')?.invalid && academicForm.get('subjectCode2')?.touched">
+                    Subject Code is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <!-- Assigned Teacher -->
+              <div class="form-group">
+                <label>Assigned Teacher <span class="mandatory">*</span></label>
+                <mat-form-field appearance="fill" class="academic-form">
+                  <mat-select formControlName="assignedTeacher" placeholder="Select Teacher">
+                    <mat-option *ngFor="let teacher of teacherList" [value]="teacher.id">
+                      {{ teacher.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="academicForm.get('assignedTeacher')?.invalid && academicForm.get('assignedTeacher')?.touched">
+                    Assigned Teacher is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
             </ng-container>
     
             <ng-container *ngIf="popupType === 'timetable'">

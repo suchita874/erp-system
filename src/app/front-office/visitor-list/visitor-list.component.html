@@ -1,8 +1,40 @@
+<div class="header">
+  <form [formGroup]="filterForm" (ngSubmit)="applyFilters()">
+    <div class="filter-row">
+  
+      <mat-form-field appearance="fill" class="filter-field small-field">
+        <input matInput placeholder="Enquiry Date" formControlName="enquiryDate" />
+        <button mat-icon-button matSuffix (click)="applyFilters()">
+          <mat-icon class="search">search</mat-icon>
+        </button>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="filter-field small-field">
+        <mat-select placeholder="Source" formControlName="source">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let option of sourceOptions" [value]="option">{{ option }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="filter-field small-field">
+        <mat-select placeholder="Status" formControlName="status">
+          <mat-option value="">All</mat-option>
+          <mat-option value="Pending">Pending</mat-option>
+          <mat-option value="Approved">Approved</mat-option>
+          <mat-option value="Rejected">Rejected</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <div class="button-container">
+        <button class="add-btn" type="button" (click)="visitorFormDialog()">+ Add</button>
+      </div>
+  
+    </div>
+  </form>  
+</div>
+
 
 <div class="bg-white shadow rounded-lg p-4">
-    <div class="button-container">
-        <button class="add-btn" (click)="visitorFormDialog()">+ Add</button>
-    </div>
     <div class="tableview">
         <div class="table-container-scroll">
             <div *ngIf="savedVisitorsList.length > 0; else noData">
@@ -108,8 +140,8 @@
               <!-- No Data Template -->
               <ng-template #noData>
                 <div class="text-center py-16">
-                  <img src="https://www.svgrepo.com/show/503996/folder-sad.svg" alt="Empty" class="mx-auto w-24 mb-4">
                   <p class="no-data">No Data Available in Table</p>
+                  <img src="assets/images/nodata.png" alt="Empty" class="mx-auto w-24 mb-4">  
                 </div>
               </ng-template>
         

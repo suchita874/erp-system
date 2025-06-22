@@ -1,0 +1,15 @@
+<form [formGroup]="remarkForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="w-100">
+      <mat-label>Remark</mat-label>
+      <textarea matInput formControlName="remark" rows="3"></textarea>
+      <mat-error *ngIf="remarkForm.get('remark')?.hasError('required')">
+        Remark is required.
+      </mat-error>
+    </mat-form-field>
+  
+    <div class="d-flex justify-content-end mt-3">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-flat-button color="warn" type="submit" [disabled]="remarkForm.invalid">Submit</button>
+    </div>
+  </form>
+  

@@ -5,6 +5,9 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LeavePageComponent } from '../leave-page/leave-page.component';
+import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-academic-form',
@@ -25,8 +28,17 @@ export class AcademicFormComponent implements OnInit{
   classes = ['Class 1', 'Class 2', 'Class 3'];
   days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   isSubmitting = false;
+  error_msg: string = '';
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AcademicFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog) {
+
+teacherList = [
+  { id: 1, name: 'Mr. Sharma' },
+  { id: 2, name: 'Ms. Verma' },
+  { id: 3, name: 'Dr. Kumar' },
+];
+
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AcademicFormComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog,
+  public appService: AppService) {
     this.academicForm = this.fb.group({
       className: [''],
       sectionName: [''],
@@ -40,7 +52,10 @@ export class AcademicFormComponent implements OnInit{
       day: [''],
       class: [''],
       subjectClassTeacher: [''],
-      subject: ['']
+      subject: [''],
+      section: [''],
+      subjectCode2: [''],
+      assignedTeacher: [''],
     });
 
     this.popupType = data.dialogType;
@@ -58,8 +73,10 @@ export class AcademicFormComponent implements OnInit{
       this.academicForm.get('totalStudents')?.setValidators([Validators.required, Validators.min(1)]);
       this.academicForm.get('classTeacher')?.setValidators([Validators.required]);
     } else if (this.popupType === 'subject') {
-      this.academicForm.get('subjectName')?.setValidators([Validators.required]);
-      this.academicForm.get('subjectCode')?.setValidators([Validators.required]);
+      this.academicForm.get('subject')?.setValidators([Validators.required]);
+      this.academicForm.get('section')?.setValidators([Validators.required]);
+      this.academicForm.get('subjectCode2')?.setValidators([Validators.required]);
+      this.academicForm.get('assignedTeacher')?.setValidators([Validators.required]);
     } else if (this.popupType === 'timetable') {
       this.academicForm.get('period')?.setValidators([Validators.required, Validators.min(1)]);
       this.academicForm.get('time')?.setValidators([Validators.required]);
@@ -89,23 +106,74 @@ export class AcademicFormComponent implements OnInit{
     }
   }
 
+  saveClassDetails() {
+    const payload = this.academicForm.value;
+    console.log('Form Data:', this.academicForm.value);
+    this.appService.saveAllClassDetails(payload).subscribe({
+      next : (response) => {
+        this.openSuccessDialog();
+      },
+      error : (error) => {
+
+      }
+    })
+  }
+
+  saveSubjectDetails() {
+
+  }
+
+  saveTimetableDetails() {
+
+  }
+
+
   onSubmit(): void {
     console.log(this.academicForm.value);
     if (this.academicForm.valid) {
-      console.log('Form Data:', this.academicForm.value);
+     
       this.isSubmitting = true;
 
       // Simulate API call
+      if(this.popupType === 'classSection') {
+       
+      }
       setTimeout(() => {
         this.isSubmitting = false;
         this.academicForm.reset();
-        alert('Class setup saved successfully!');
+        
       }, 1500);
     }
     this.closePopup();
   }
 
+  openSuccessDialog() {
+    if(this.academicForm.dirty) {
+      this.dialog.open(SuccessDialogComponent, {
+        width: '200px',
+        height: 'auto',
+        panelClass: 'Leave-Page-dialog',
+        disableClose: true
+      });
+    }
+    else {
+      this.dialogRef.close();
+    }
+  }
 
+  onClose(): void {
+    if(this.academicForm.dirty) {
+      this.dialog.open(LeavePageComponent, {
+        width: '430px',
+        height: 'auto',
+        panelClass: 'Leave-Page-dialog',
+        disableClose: true
+      });
+    }
+    else {
+      this.dialogRef.close();
+    }
+  }
 
 }
 

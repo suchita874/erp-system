@@ -1,0 +1,27 @@
+  
+.table-wrapper {
+    width: 956px;
+    height: auto;
+}
+  .header-table th:nth-child(1),
+  .body-table td:nth-child(1) {
+    width: 15%;
+  }
+  .header-table th:nth-child(2),
+  .body-table td:nth-child(2) {
+    width: 20%;
+  }
+  .header-table th:nth-child(3),
+  .body-table td:nth-child(3) {
+    width: 20%;
+  }
+  .header-table th:nth-child(4),
+  .body-table td:nth-child(4) {
+    width: 20%;
+  }
+  
+
+  .header-table th:nth-child(5),
+  .body-table td:nth-child(5) {
+    width: 25%;
+  }

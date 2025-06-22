@@ -96,8 +96,9 @@ export class MenuComponent {
     {
       label: 'Human Resource',
       icon: this.hrImg,
+      link: '/menu/human-resource',
       children: [
-        { label: 'Employee', link: '' },
+        { label: 'Employee', link: '/menu/human-resource/employee' },
         { label: 'New Employee', link: '' },
         { label: 'Payroll', link: '' },
         { label: 'Leaves Setup', link: '' }

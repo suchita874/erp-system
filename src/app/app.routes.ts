@@ -19,6 +19,8 @@ import { AcademicComponent } from './academic/academic.component';
 import { ClassSectionSetupComponent } from './academic/class-section-setup/class-section-setup.component';
 import { SubjectSetupComponent } from './academic/subject-setup/subject-setup.component';
 import { TimetableSetupComponent } from './academic/timetable-setup/timetable-setup.component';
+import { EmployeeComponent } from './human-resource/employee/employee.component';
+import { HumanResourceComponent } from './human-resource/human-resource.component';
 
 export const routes: Routes = [
   {
@@ -91,7 +93,14 @@ export const routes: Routes = [
         {path: 'subject', component: SubjectSetupComponent},
         {path: 'timetable', component: TimetableSetupComponent}
       ]
+      },
+
+      {path: 'human-resource', component: HumanResourceComponent,
+      children: [
+        {path: 'employee', component: EmployeeComponent},
+      ]
       }
+
     ]
   }
 ];
